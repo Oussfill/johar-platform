@@ -1,0 +1,2 @@
+﻿ALTER TABLE johar_passports ADD COLUMN IF NOT EXISTS updated TEXT;
+ALTER TABLE johar_passports ADD COLUMN IF NOT EXISTS transfers INTEGER;

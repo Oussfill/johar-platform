@@ -1,0 +1,58 @@
+﻿[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mEMAIL_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSMS_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSTORAGE_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mPAYMENT_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mKYC_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:04 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSANCTIONS_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+node.exe : (node:17380) DeprecationWarning: Calling client.query() when the client is already executing a query is 
+deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+Au caractère C:\nvm4w\nodejs\npx.ps1:16 : 5
++     & "$basedir/node$exe"  "$basedir/node_modules/npm/bin/npx-cli.js" ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:17380) De...hanism instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL src/__integration__/database.integration.spec.ts (13.392 s)
+  ÔùÅ Real PostgreSQL integration ÔÇ║ ERP Phase 2 (ported from gold) ÔÇ║ (security regression) invalid status 
+transition rejected
+
+    TypeError: erpController.updateSalesOrder is not a function
+
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:646:34)
+
+  ÔùÅ Real PostgreSQL integration ÔÇ║ ERP Phase 2 (ported from gold) ÔÇ║ sales: order verify/fulfill then invoice pay
+
+    BadRequestException: Invalid status transition: DRAFT -> PAID
+
+      at ErpService.paySalesInvoice (modules/erp/C:/trd/johar/packages/backend/src/modules/erp/erp.service.ts:346:13)
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:654:20)
+
+  ÔùÅ Real PostgreSQL integration ÔÇ║ Custody four-eyes (ported from gold) ÔÇ║ a different authorized actor can approve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "APPROVED"
+    Received: "PENDING"
+
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:712:31)
+
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mEMAIL_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSMS_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSTORAGE_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mPAYMENT_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mKYC_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+[33m[Nest] 17380  - [39m17/09/2026 21:33:11 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSANCTIONS_PROVIDER="mock" ÔÇö using mock provider. NOT suitable for production.[39m
+(node:17380) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and 
+will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+PASS src/__integration__/http-e2e.spec.ts
+PASS src/__integration__/rate-limit.integration.spec.ts
+
+Test Suites: 1 failed, 2 passed, 3 total
+Tests:       3 failed, 81 passed, 84 total
+Snapshots:   0 total
+Time:        17.66 s
+Ran all test suites.

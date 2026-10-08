@@ -1,0 +1,2 @@
+﻿ALTER TABLE kyc_requests ALTER COLUMN user_id DROP NOT NULL;
+ALTER TABLE kyb_requests ALTER COLUMN company_id DROP NOT NULL;

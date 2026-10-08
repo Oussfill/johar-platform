@@ -1,0 +1,127 @@
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mEMAIL_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSMS_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSTORAGE_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mPAYMENT_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mKYC_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+[33m[Nest] 16448  - [39m17/09/2026 21:16:58 [33m   WARN[39m [38;5;3m[ProvidersModule] [39m[33mSANCTIONS_PROVIDER="mock" ??? using mock provider. NOT suitable for production.[39m
+node.exe : (node:16448) DeprecationWarning: Calling client.query() when the client is already executing a query is 
+deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.
+Au caract?re C:\nvm4w\nodejs\npx.ps1:16 : 5
++     & "$basedir/node$exe"  "$basedir/node_modules/npm/bin/npx-cli.js" ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:16448) De...hanism instead.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Use `node --trace-deprecation ...` to show where the warning was created)
+FAIL src/__integration__/database.integration.spec.ts (11.123 s)
+  Real PostgreSQL integration
+    Registration and persistence
+      ??? persists a user with a hashed password (251 ms)
+      ??? rejects duplicate registration (246 ms)
+    MFA device IDOR
+      ??? registers a TOTP device for ownerA (4 ms)
+      ??? verifies with the owner's own valid code (6 ms)
+      ??? denies cross-user verification even with a valid code (IDOR blocked) (1 ms)
+    Asset org scoping
+      ??? owner can read asset by JOHAR ID (1 ms)
+      ??? outsider from another organization is forbidden (3 ms)
+      ??? only owner can create a digital passport (6 ms)
+    Marketplace access control
+      ??? owner can list the asset (5 ms)
+      ??? outsider is forbidden from listing an asset they do not own (2 ms)
+      ??? buyer can make an offer (7 ms)
+      ??? seller cannot offer on own listing (15 ms)
+      ??? (security regression) duplicate pending offer is rejected (4 ms)
+      ??? (security regression) non-seller outsider cannot accept an offer (4 ms)
+      ??? (security regression) buyer cannot accept an offer either (5 ms)
+      ??? accepting the offer creates a transaction (11 ms)
+      ??? (security regression) illegal transaction status transition is rejected (5 ms)
+      ??? participants can read the transaction, outsiders cannot (7 ms)
+    Finance access control
+      ??? party to the transaction can create an invoice (6 ms)
+      ??? non-participant cannot create an invoice on the same transaction (1 ms)
+      ??? participant records a payment (8 ms)
+      ??? same-org finance officer confirms payment and marks invoice PAID (46 ms)
+      ??? non-finance outsider cannot confirm a cross-tenant payment (6 ms)
+    Labs access control
+      ??? owner can submit an assay request (4 ms)
+      ??? requester can read the request, outsider cannot (9 ms)
+      ??? results for an asset are scoped (4 ms)
+      ??? (security regression) lab staff from another organization cannot issue results (10 ms)
+      ??? lab staff in the asset's organization can issue and approve results (24 ms)
+    Compliance access control
+      ??? user can submit KYC for their organization (4 ms)
+      ??? profile owner can read it (3 ms)
+      ??? outsider in another org is forbidden (2 ms)
+      ??? same-org KYC officer can read it (1 ms)
+      ??? same-org KYC officer can review it (5 ms)
+      ??? outsider cannot submit KYC documents for another organization's profile (2 ms)
+    Audit logs and notifications access control
+      ??? (security regression) a non-auditor is denied audit logs
+      ??? SUPER_ADMIN can read audit logs (3 ms)
+      ??? (security regression) notifications are scoped to the recipient (5 ms)
+      ??? (security regression) a user cannot mark another user's notification read (3 ms)
+    RBAC enforcement
+      ??? non-super admins cannot see the SUPER_ADMIN role (2 ms)
+      ??? org users without platform rights cannot list permissions
+      ??? PLATFORM_ADMIN cannot assign PLATFORM_ADMIN or SUPER_ADMIN roles (3 ms)
+      ??? SUPER_ADMIN can assign roles (2 ms)
+    ERP Phase 2 (ported from gold)
+      ??? authenticated member can list empty suppliers (2 ms)
+      ??? create supplier scoped to caller's organization (7 ms)
+      ??? (security regression) cross-org supplier read denied (2 ms)
+      ??? CRM: customer + interaction + opportunity flow (15 ms)
+      ??? procurement: purchase request submit/approve, RFQ send + offer + choose (30 ms)
+      ?? (security regression) invalid status transition rejected (8 ms)
+      ?? sales: order verify/fulfill then invoice pay (16 ms)
+    HR workforce (ported from gold)
+      ??? create worker type + worker + attendance + payroll overview (22 ms)
+      ??? (security regression) cross-org payroll overview is isolated
+    Custody four-eyes (ported from gold)
+      ??? create org-scoped custody vaults (7 ms)
+      ??? (security regression) vaults are not visible across organizations (4 ms)
+      ??? four-eyes: the requester cannot approve their own transfer (9 ms)
+      ??? (security regression) cross-org actor cannot approve (2 ms)
+      ?? a different authorized actor can approve (7 ms)
+    Content & public site (ported from gold)
+      ??? public article lifecycle: list/create/publish/read (6 ms)
+      ??? newsletter subscribe/unsubscribe + contact inquiry (12 ms)
+    Trust verifications (ported from gold)
+      ??? org applies a factor and trust admin approves (10 ms)
+      ??? (security regression) platform role without an org cannot submit for any org
+
+  ??? Real PostgreSQL integration ??? ERP Phase 2 (ported from gold) ??? (security regression) invalid status 
+transition rejected
+
+    expect(received).rejects.toBeInstanceOf(expected)
+
+    Expected constructor: BadRequestException
+    Received constructor: NotFoundException
+
+      at Object.toBeInstanceOf (../../../node_modules/expect/build/index.js:2155:20)
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:646:81)
+
+  ??? Real PostgreSQL integration ??? ERP Phase 2 (ported from gold) ??? sales: order verify/fulfill then invoice pay
+
+    BadRequestException: Invalid status transition: DRAFT -> PAID
+
+      at ErpService.paySalesInvoice (modules/erp/C:/trd/johar/packages/backend/src/modules/erp/erp.service.ts:346:13)
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:654:20)
+
+  ??? Real PostgreSQL integration ??? Custody four-eyes (ported from gold) ??? a different authorized actor can approve
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "APPROVED"
+    Received: "PENDING"
+
+      at Object.<anonymous> 
+(__integration__/C:/trd/johar/packages/backend/src/__integration__/database.integration.spec.ts:712:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       3 failed, 57 passed, 60 total
+Snapshots:   0 total
+Time:        11.348 s
+Ran all test suites matching database.integration.

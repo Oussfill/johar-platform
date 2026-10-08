@@ -1,0 +1,30 @@
+{
+  "name": "johar-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JOHAR - Global Gold & Jewelry Digital Infrastructure & Marketplace",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:api": "npm run dev --workspace=packages/backend",
+    "dev:admin": "npm run dev --workspace=packages/admin",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "db:migrate": "cd packages/backend && npx tsx src/database/run-migrations.ts",
+    "db:seed": "cd packages/backend && npx tsx src/database/seed.ts"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.116.0"
+  }
+}

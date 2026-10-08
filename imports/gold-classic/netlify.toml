@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build:netlify"
+  functions = "netlify/functions"
+  publish = "public/dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# كل طلبات API تذهب إلى Function واحدة تغلف Express
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# مسار الصحة أيضًا عبر API
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/api/health"
+  status = 200
+  force = true
+
+# SPA fallback — كل الروابط الأخرى تذهب للواجهة
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

@@ -1,0 +1,147 @@
+export const TENANTS = {
+  tenantA: {
+    id: "tenant-a-00000000-0000-0000-0000-000000000001",
+    name: "Gold Trading Co",
+    registrationNumber: "GTC-2024-001",
+    country: "AE",
+    city: "Dubai",
+  },
+  tenantB: {
+    id: "tenant-b-00000000-0000-0000-0000-000000000002",
+    name: "Silver Mining Ltd",
+    registrationNumber: "SML-2024-001",
+    country: "SA",
+    city: "Riyadh",
+  },
+};
+
+export const USERS = {
+  superAdmin: {
+    id: "user-super-admin-0000-0000-0000-000000000001",
+    email: "superadmin@johar.test",
+    firstName: "Super",
+    lastName: "Admin",
+    password: "TestPassword123!",
+    roles: ["SUPER_ADMIN"],
+    organizationId: undefined,
+  },
+  platformAdmin: {
+    id: "user-platform-admin-0000-0000-0000-000000000002",
+    email: "platformadmin@johar.test",
+    firstName: "Platform",
+    lastName: "Admin",
+    password: "TestPassword123!",
+    roles: ["PLATFORM_ADMIN"],
+    organizationId: undefined,
+  },
+  orgAdminA: {
+    id: "user-org-admin-a-00000-0000-0000-000000000003",
+    email: "admin@goldtrading.test",
+    firstName: "Ahmed",
+    lastName: "Al-Rashid",
+    password: "TestPassword123!",
+    roles: ["ORG_ADMIN"],
+    organizationId: TENANTS.tenantA.id,
+  },
+  sellerA: {
+    id: "user-seller-a-0000000-0000-0000-000000000004",
+    email: "seller@goldtrading.test",
+    firstName: "Mohammed",
+    lastName: "Hassan",
+    password: "TestPassword123!",
+    roles: ["SELLER"],
+    organizationId: TENANTS.tenantA.id,
+  },
+  buyerA: {
+    id: "user-buyer-a-00000000-0000-0000-000000000005",
+    email: "buyer@goldtrading.test",
+    firstName: "Fatima",
+    lastName: "Ali",
+    password: "TestPassword123!",
+    roles: ["BUYER"],
+    organizationId: TENANTS.tenantA.id,
+  },
+  sellerB: {
+    id: "user-seller-b-0000000-0000-0000-000000000006",
+    email: "seller@silvermining.test",
+    firstName: "Khalid",
+    lastName: "Omar",
+    password: "TestPassword123!",
+    roles: ["SELLER"],
+    organizationId: TENANTS.tenantB.id,
+  },
+  financeOfficer: {
+    id: "user-finance-00000000-0000-0000-0000-000000000007",
+    email: "finance@goldtrading.test",
+    firstName: "Layla",
+    lastName: "Ibrahim",
+    password: "TestPassword123!",
+    roles: ["FINANCE_OFFICER"],
+    organizationId: TENANTS.tenantA.id,
+  },
+  auditor: {
+    id: "user-auditor-00000000-0000-0000-0000-000000000008",
+    email: "auditor@johar.test",
+    firstName: "Omar",
+    lastName: "Farooq",
+    password: "TestPassword123!",
+    roles: ["AUDITOR"],
+    organizationId: undefined,
+  },
+};
+
+export const ASSETS = {
+  goldBarA: {
+    id: "asset-gold-bar-a-0000-0000-0000-000000000001",
+    joharId: "JOHAR-BAR-UAE-2024-00001",
+    type: "BULLION",
+    subType: "BAR",
+    weight: 1000,
+    weightUnit: "g",
+    purity: "99.99",
+    karat: "24",
+    origin: "UAE",
+    originCountry: "AE",
+    ownerId: USERS.sellerA.id,
+    currentLocationId: TENANTS.tenantA.id,
+    status: "ACTIVE",
+  },
+  goldBarB: {
+    id: "asset-gold-bar-b-0000-0000-0000-000000000002",
+    joharId: "JOHAR-BAR-SAU-2024-00002",
+    type: "BULLION",
+    subType: "BAR",
+    weight: 500,
+    weightUnit: "g",
+    purity: "99.99",
+    karat: "24",
+    origin: "Saudi Arabia",
+    originCountry: "SA",
+    ownerId: USERS.sellerB.id,
+    currentLocationId: TENANTS.tenantB.id,
+    status: "ACTIVE",
+  },
+};
+
+export const LISTINGS = {
+  goldBarA: {
+    id: "listing-gold-bar-a-000000-0000-000000000001",
+    assetId: ASSETS.goldBarA.id,
+    sellerId: USERS.sellerA.id,
+    price: 65000,
+    currency: "USD",
+    listingType: "FIXED",
+    status: "ACTIVE",
+  },
+};
+
+export const OFFERS = {
+  buyerA: {
+    id: "offer-buyer-a-00000000-0000-0000-000000000001",
+    listingId: LISTINGS.goldBarA.id,
+    buyerId: USERS.buyerA.id,
+    amount: 63000,
+    currency: "USD",
+    status: "PENDING",
+  },
+};

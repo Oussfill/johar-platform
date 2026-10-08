@@ -1,0 +1,989 @@
+/* ============================================================================
+   GOLD PLATFORM — GLOBAL DESIGN SYSTEM
+   ============================================================================
+   الهوية البصرية: Deep Graphite/Black (أساسي) + Precious Gold (ثانوي)
+   الخطوط: Arabic Modern Sans-Serif (AR) | Inter/Enterprise Sans-Serif (EN/FR)
+   ============================================================================ */
+
+:root {
+  /* ============================================================================
+     COLOR SYSTEM — نظام الألوان
+     ============================================================================ */
+  
+  /* الألوان الأساسية (Deep Graphite / Black) */
+  --color-primary-900: #0a0a0f;
+  --color-primary-800: #12121a;
+  --color-primary-700: #1a1a25;
+  --color-primary-600: #222230;
+  --color-primary-500: #2a2a38;
+  --color-primary-400: #3a3a4a;
+  --color-primary-300: #555568;
+  --color-primary-200: #8888a0;
+  --color-primary-100: #b0b0c8;
+  
+  /* لون الذهب الثمين (Precious Gold) */
+  --color-gold-500: #c9a84c;
+  --color-gold-400: #d4b85c;
+  --color-gold-300: #e0c96e;
+  --color-gold-200: #ebd88a;
+  --color-gold-100: #f5eab5;
+  --color-gold-600: #b08f30;
+  --color-gold-700: #8c7120;
+  --color-gold-800: #685215;
+  --color-gold-900: #4a3a0e;
+  
+  /* ألوان مساعدة */
+  --color-silver: #c0c0c0;
+  --color-platinum: #e5e4e2;
+  --color-success: #22c55e;
+  --color-success-bg: #052e16;
+  --color-warning: #f59e0b;
+  --color-warning-bg: #451a03;
+  --color-risk-red: #ef4444;
+  --color-risk-red-bg: #450a0a;
+  --color-info: #3b82f6;
+  --color-info-bg: #172554;
+  
+  /* ============================================================================
+     TYPOGRAPHY — نظام الطباعة
+     ============================================================================ */
+  
+  --font-arabic: 'Noto Sans Arabic', 'Cairo', 'Tajawal', sans-serif;
+  --font-latin: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* ============================================================================
+     SPACING & LAYOUT — التباعد والتخطيط
+     ============================================================================ */
+  
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  /* ============================================================================
+     SHADOWS & EFFECTS — الظلال والتأثيرات
+     ============================================================================ */
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 0 20px rgba(201, 168, 76, 0.15);
+  --shadow-gold-strong: 0 0 30px rgba(201, 168, 76, 0.25);
+  
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+}
+
+/* ============================================================================
+   BASE STYLES — الأنماط الأساسية
+   ============================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-latin);
+  background-color: var(--color-primary-900);
+  color: var(--color-primary-100);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ============================================================================
+   RTL SUPPORT — دعم الكتابة من اليمين لليسار
+   ============================================================================ */
+
+[dir="rtl"] body,
+[dir="rtl"] .gold-app {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  text-align: right;
+}
+
+[dir="ltr"] body,
+[dir="ltr"] .gold-app {
+  font-family: var(--font-latin);
+  direction: ltr;
+  text-align: left;
+}
+
+/* ============================================================================
+   NAVIGATION BAR — شريط التنقل الرئيسي
+   ============================================================================ */
+
+.gold-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-900));
+  border-bottom: 1px solid var(--color-primary-600);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.gold-navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.gold-navbar__logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-700));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: var(--color-primary-900);
+  box-shadow: var(--shadow-gold);
+}
+
+.gold-navbar__logo-text {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+}
+
+.gold-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.gold-navbar__link {
+  color: var(--color-primary-200);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.gold-navbar__link:hover {
+  color: var(--color-gold-400);
+  background-color: var(--color-primary-700);
+}
+
+.gold-navbar__link--active {
+  color: var(--color-gold-400);
+  background-color: var(--color-primary-700);
+  border-bottom: 2px solid var(--color-gold-500);
+}
+
+.gold-navbar__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ============================================================================
+   LANGUAGE SWITCHER — محوّل اللغات
+   ============================================================================ */
+
+.gold-lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--color-primary-700);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  border: 1px solid var(--color-primary-500);
+}
+
+.gold-lang-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  color: var(--color-primary-300);
+  letter-spacing: 1px;
+}
+
+.gold-lang-btn:hover {
+  color: var(--color-gold-400);
+}
+
+.gold-lang-btn--active {
+  background: linear-gradient(135deg, var(--color-gold-600), var(--color-gold-500));
+  color: var(--color-primary-900);
+  box-shadow: var(--shadow-gold);
+}
+
+/* ============================================================================
+   CURRENCY SWITCHER — محوّل العملات
+   ============================================================================ */
+
+.gold-currency-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--color-primary-700);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  border: 1px solid var(--color-primary-500);
+}
+
+.gold-currency-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: transparent;
+  color: var(--color-primary-300);
+}
+
+.gold-currency-btn:hover {
+  color: var(--color-gold-400);
+}
+
+.gold-currency-btn--active {
+  background: var(--color-primary-500);
+  color: var(--color-gold-400);
+}
+
+/* ============================================================================
+   CARDS — البطاقات
+   ============================================================================ */
+
+.gold-card {
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-700));
+  border: 1px solid var(--color-primary-500);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-normal);
+}
+
+.gold-card:hover {
+  border-color: var(--color-gold-700);
+  box-shadow: var(--shadow-gold);
+}
+
+.gold-card--highlighted {
+  border-color: var(--color-gold-600);
+  box-shadow: var(--shadow-gold);
+}
+
+.gold-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.gold-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-400);
+}
+
+.gold-card__subtitle {
+  font-size: 0.85rem;
+  color: var(--color-primary-200);
+}
+
+/* ============================================================================
+   BUTTONS — الأزرار
+   ============================================================================ */
+
+.gold-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.gold-btn--primary {
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-600));
+  color: var(--color-primary-900);
+  box-shadow: var(--shadow-gold);
+}
+
+.gold-btn--primary:hover {
+  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-500));
+  box-shadow: var(--shadow-gold-strong);
+  transform: translateY(-1px);
+}
+
+.gold-btn--secondary {
+  background-color: var(--color-primary-600);
+  color: var(--color-primary-100);
+  border: 1px solid var(--color-primary-400);
+}
+
+.gold-btn--secondary:hover {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-gold-700);
+}
+
+.gold-btn--danger {
+  background-color: var(--color-risk-red);
+  color: white;
+}
+
+.gold-btn--danger:hover {
+  background-color: #dc2626;
+}
+
+.gold-btn--ghost {
+  background: transparent;
+  color: var(--color-primary-200);
+  border: 1px solid var(--color-primary-500);
+}
+
+.gold-btn--ghost:hover {
+  color: var(--color-gold-400);
+  border-color: var(--color-gold-600);
+}
+
+.gold-btn--sm {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+}
+
+.gold-btn--lg {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.gold-btn--full {
+  width: 100%;
+}
+
+/* ============================================================================
+   FORM ELEMENTS — عناصر النموذج
+   ============================================================================ */
+
+.gold-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-500);
+  border-radius: var(--radius-md);
+  color: var(--color-primary-100);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+.gold-input:focus {
+  outline: none;
+  border-color: var(--color-gold-500);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+.gold-input::placeholder {
+  color: var(--color-primary-400);
+}
+
+.gold-label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary-200);
+}
+
+.gold-select {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-primary-700);
+  border: 1px solid var(--color-primary-500);
+  border-radius: var(--radius-md);
+  color: var(--color-primary-100);
+  font-size: 0.9rem;
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238888a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.gold-select:focus {
+  outline: none;
+  border-color: var(--color-gold-500);
+}
+
+/* ============================================================================
+   STATUS BADGES — شارات الحالة
+   ============================================================================ */
+
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.gold-badge--success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.gold-badge--warning {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.gold-badge--danger {
+  background-color: var(--color-risk-red-bg);
+  color: var(--color-risk-red);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.gold-badge--info {
+  background-color: var(--color-info-bg);
+  color: var(--color-info);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.gold-badge--gold {
+  background: linear-gradient(135deg, var(--color-gold-900), var(--color-gold-800));
+  color: var(--color-gold-300);
+  border: 1px solid var(--color-gold-700);
+}
+
+/* ============================================================================
+   VERIFICATION SCREEN — شاشة التحقق
+   ============================================================================ */
+
+.gold-verification {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-xl);
+  text-align: center;
+}
+
+.gold-verification__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-lg);
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-700));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--color-primary-900);
+  box-shadow: var(--shadow-gold-strong);
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: var(--shadow-gold); }
+  50% { box-shadow: var(--shadow-gold-strong); }
+}
+
+.gold-verification__title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-gold-400);
+  margin-bottom: var(--space-sm);
+}
+
+.gold-verification__subtitle {
+  font-size: 1rem;
+  color: var(--color-primary-200);
+  margin-bottom: var(--space-2xl);
+}
+
+.gold-verification__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.gold-detail-item {
+  padding: var(--space-md);
+  background-color: var(--color-primary-800);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary-600);
+}
+
+.gold-detail-item__label {
+  font-size: 0.75rem;
+  color: var(--color-primary-300);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-xs);
+}
+
+.gold-detail-item__value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gold-400);
+}
+
+/* ============================================================================
+   AI CHAT INTERFACE — واجهة المساعد الذكي
+   ============================================================================ */
+
+.gold-ai-chat {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.gold-ai-chat__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-700));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--color-primary-500);
+  border-bottom: none;
+}
+
+.gold-ai-avatar {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-700));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--color-primary-900);
+}
+
+.gold-ai-chat__messages {
+  min-height: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  background-color: var(--color-primary-800);
+  border-left: 1px solid var(--color-primary-500);
+  border-right: 1px solid var(--color-primary-500);
+}
+
+.gold-ai-message {
+  margin-bottom: var(--space-md);
+  display: flex;
+  gap: var(--space-md);
+}
+
+.gold-ai-message--user {
+  flex-direction: row-reverse;
+}
+
+.gold-ai-message__bubble {
+  max-width: 75%;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.gold-ai-message--ai .gold-ai-message__bubble {
+  background-color: var(--color-primary-600);
+  color: var(--color-primary-100);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.gold-ai-message--user .gold-ai-message__bubble {
+  background: linear-gradient(135deg, var(--color-gold-600), var(--color-gold-500));
+  color: var(--color-primary-900);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.gold-ai-chat__input-area {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-primary-700);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border: 1px solid var(--color-primary-500);
+  border-top: none;
+}
+
+.gold-ai-chat__input {
+  flex: 1;
+  padding: 12px 16px;
+  background-color: var(--color-primary-600);
+  border: 1px solid var(--color-primary-400);
+  border-radius: var(--radius-full);
+  color: var(--color-primary-100);
+  font-size: 0.9rem;
+}
+
+.gold-ai-chat__input:focus {
+  outline: none;
+  border-color: var(--color-gold-500);
+}
+
+.gold-ai-chat__send {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--color-gold-500), var(--color-gold-600));
+  color: var(--color-primary-900);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.gold-ai-chat__send:hover {
+  box-shadow: var(--shadow-gold-strong);
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   AI DISCLAIMER — إخلاء المسؤولية
+   ============================================================================ */
+
+.gold-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: linear-gradient(135deg, var(--color-info-bg), rgba(59, 130, 246, 0.05));
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-lg);
+}
+
+.gold-disclaimer__icon {
+  flex-shrink: 0;
+  color: var(--color-info);
+  font-size: 1.1rem;
+  margin-top: 2px;
+}
+
+.gold-disclaimer__text {
+  font-size: 0.8rem;
+  color: var(--color-primary-200);
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   ERP COMMAND CENTER — لوحة التحكم التشغيلية
+   ============================================================================ */
+
+.gold-erp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+}
+
+.gold-erp-stat {
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, var(--color-primary-800), var(--color-primary-700));
+  border: 1px solid var(--color-primary-500);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all var(--transition-normal);
+}
+
+.gold-erp-stat:hover {
+  border-color: var(--color-gold-700);
+  box-shadow: var(--shadow-gold);
+}
+
+.gold-erp-stat__number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-gold-400);
+  margin-bottom: var(--space-xs);
+}
+
+.gold-erp-stat__label {
+  font-size: 0.85rem;
+  color: var(--color-primary-200);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ============================================================================
+   CHAIN OF CUSTODY TIMELINE — خط زمني لسلسلة الحيازة
+   ============================================================================ */
+
+.gold-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.gold-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-gold-500), var(--color-primary-500));
+}
+
+.gold-timeline__item {
+  position: relative;
+  margin-bottom: var(--space-lg);
+  padding-left: var(--space-md);
+}
+
+.gold-timeline__dot {
+  position: absolute;
+  left: -26px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-gold-500);
+  border-radius: 50%;
+  border: 2px solid var(--color-primary-800);
+}
+
+.gold-timeline__item--completed .gold-timeline__dot {
+  background-color: var(--color-success);
+}
+
+.gold-timeline__item--pending .gold-timeline__dot {
+  background-color: var(--color-warning);
+}
+
+.gold-timeline__content {
+  padding: var(--space-md);
+  background-color: var(--color-primary-800);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary-600);
+}
+
+.gold-timeline__date {
+  font-size: 0.75rem;
+  color: var(--color-primary-300);
+  margin-bottom: var(--space-xs);
+}
+
+.gold-timeline__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary-100);
+}
+
+.gold-timeline__description {
+  font-size: 0.85rem;
+  color: var(--color-primary-200);
+}
+
+/* ============================================================================
+   TABLE — الجداول
+   ============================================================================ */
+
+.gold-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--color-primary-800);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-primary-500);
+}
+
+.gold-table th {
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-primary-700);
+  color: var(--color-gold-400);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  border-bottom: 2px solid var(--color-primary-500);
+}
+
+.gold-table td {
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.9rem;
+  color: var(--color-primary-100);
+  border-bottom: 1px solid var(--color-primary-600);
+}
+
+.gold-table tr:hover td {
+  background-color: var(--color-primary-700);
+}
+
+/* Keep auxiliary columns only when there is room; hide them on compact
+   desktop widths so the core columns can breathe (the cards mode below
+   still shows every field once an even narrower breakpoint is reached). */
+@media (max-width: 1300px) {
+  .gold-table .gold-t-hide-1300 {
+    display: none;
+  }
+}
+
+/* On narrow screens, render .gold-table--cards rows as stacked cards with
+   field labels (each <td> must carry a data-th attribute). */
+@media (max-width: 1100px) {
+  .gold-table--cards,
+  .gold-table--cards tbody,
+  .gold-table--cards tr,
+  .gold-table--cards td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .gold-table--cards thead {
+    display: none;
+  }
+  .gold-table--cards tr {
+    margin-bottom: var(--space-md);
+  }
+  .gold-table--cards td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: right;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .gold-table--cards td:last-child {
+    border-bottom: 0;
+  }
+  .gold-table--cards td::before {
+    content: attr(data-th);
+    flex: 0 0 auto;
+    color: var(--color-gold-400);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+/* ============================================================================
+   LOADING & ANIMATIONS — التحميل والحركات
+   ============================================================================ */
+
+.gold-spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--color-primary-500);
+  border-top-color: var(--color-gold-500);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-700) 0%,
+    var(--color-primary-600) 50%,
+    var(--color-primary-700) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================================================
+   SCROLLBAR — شريط التمرير
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary-800);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-500);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-700);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN — التصميم المتجاوب
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .gold-navbar {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .gold-navbar__links {
+    display: none;
+  }
+
+  .gold-verification__details {
+    grid-template-columns: 1fr;
+  }
+
+  .gold-erp-grid {
+    grid-template-columns: 1fr;
+  }
+}

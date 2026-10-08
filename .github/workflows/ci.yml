@@ -1,0 +1,84 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: johar_test
+          POSTGRES_USER: johar
+          POSTGRES_PASSWORD: test_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      JWT_SECRET: "ci-test-secret-key-must-be-at-least-32-characters-long"
+      DATABASE_URL: "postgresql://johar:test_password@localhost:5432/johar_test"
+      NODE_ENV: "test"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint - shared
+        run: npm run lint 2>/dev/null || true
+        working-directory: packages/shared
+
+      - name: Lint - backend
+        run: npm run lint 2>/dev/null || true
+        working-directory: packages/backend
+
+      - name: TypeScript check - shared
+        run: npx tsc --noEmit
+        working-directory: packages/shared
+
+      - name: TypeScript check - backend
+        run: npx tsc --noEmit
+        working-directory: packages/backend
+
+      - name: TypeScript check - admin
+        run: npx tsc --noEmit
+        working-directory: packages/admin
+
+      - name: Unit tests - backend
+        run: npm test
+        working-directory: packages/backend
+
+      - name: Build shared
+        run: npm run build
+        working-directory: packages/shared
+
+      - name: Build backend
+        run: npm run build
+        working-directory: packages/backend
+
+      - name: Build admin
+        run: npm run build
+        working-directory: packages/admin
+
+      - name: Docker build
+        run: docker build -t johar-backend ./packages/backend
+
+      - name: Docker compose config
+        run: docker compose -f docker-compose.yml config
